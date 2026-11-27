@@ -1,0 +1,154 @@
+/* VELA motion layer: transform/opacity only, respects prefers-reduced-motion */
+:root{--ease-out:cubic-bezier(.22,1,.36,1);--ease-spring:cubic-bezier(.34,1.56,.64,1)}
+
+/* scroll progress */
+.scroll-bar{position:fixed;top:0;inset-inline:0;height:3px;background:#FF6B1A;transform-origin:right center;transform:scaleX(0);z-index:200;pointer-events:none}
+
+/* header */
+.site-header{animation:hdrIn .8s var(--ease-out) both;transition:box-shadow .35s}
+.site-header.scrolled{box-shadow:0 10px 30px rgba(14,33,64,.12)}
+.header-pill{transition:transform .35s var(--ease-out)}
+.site-header.scrolled .header-pill{transform:scale(.985)}
+@keyframes hdrIn{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+.nav a{position:relative}
+.nav a::after{content:"";position:absolute;inset-inline:0;bottom:-4px;height:2px;background:#FF6B1A;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease-out)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.icon-btn,.cart-btn,.btn-buy,.wish-btn{transition:transform .25s var(--ease-spring),background-color .25s,box-shadow .25s}
+.icon-btn:hover,.cart-btn:hover{transform:translateY(-2px) scale(1.08)}
+.icon-btn:active,.cart-btn:active,.wish-btn:active{transform:scale(.88)}
+.btn-buy:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(255,107,26,.35)}
+.cart-count.bump,.badge.bump{animation:bump .55s var(--ease-spring)}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.7)}100%{transform:scale(1)}}
+
+/* hero entrance */
+.hero-badge{animation:popIn .8s var(--ease-spring) .15s both}
+.hero-title{animation:titleIn 1.1s var(--ease-out) .3s both}
+.hero-sub{animation:fadeUp .9s var(--ease-out) .7s both}
+.hero-cta{animation:fadeUp .9s var(--ease-out) .85s both}
+.hero-stage{animation:stageIn 1.3s var(--ease-out) .5s both}
+.hero-watch{will-change:transform;animation:floaty 7s ease-in-out 1.8s infinite;transform:translate3d(var(--px,0),var(--py,0),0)}
+.spec-card{animation:popIn .9s var(--ease-spring) 1.3s both,bob 6s ease-in-out 2.3s infinite}
+.spec-b{animation-delay:1.55s,2.6s}
+.spec-dot{position:relative}
+.spec-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #FF6B1A;opacity:0;animation:ping 2.4s ease-out 2s infinite}
+.hero-stats>div{animation:fadeUp .9s var(--ease-out) both}
+.hero-stats>div:nth-child(1){animation-delay:1.5s}
+.hero-stats>div:nth-child(2){animation-delay:1.65s}
+.hero-stats>div:nth-child(3){animation-delay:1.8s}
+@keyframes titleIn{from{opacity:0;transform:translateY(46px) scale(.96);filter:blur(8px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.6) translateY(16px)}to{opacity:1;transform:none}}
+@keyframes stageIn{from{opacity:0;transform:translateY(70px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{translate:0 0;rotate:0deg}50%{translate:0 -12px;rotate:.6deg}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -9px}}
+@keyframes ping{0%{opacity:.7;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+
+/* scroll reveal */
+.js .rv:not(.in):not(.seen){opacity:0}
+.rv.in{animation:rvUp .9s var(--ease-out) both;animation-delay:calc(var(--i,0) * 80ms)}
+.rv.in.from-side{animation-name:rvSide}
+.rv.in.zoom{animation-name:rvZoom}
+@keyframes rvUp{from{opacity:0;transform:translateY(48px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes rvSide{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:none}}
+@keyframes rvZoom{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+.eyebrow{position:relative;display:inline-block}
+.eyebrow::after{content:"";position:absolute;inset-inline-start:0;bottom:-6px;height:2px;width:100%;background:#FF6B1A;transform:scaleX(0);transform-origin:right;transition:transform .9s var(--ease-out) .3s}
+.rv.in .eyebrow::after,.in .eyebrow::after{transform:scaleX(.35)}
+
+/* cards */
+.card{will-change:transform}
+.card.tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px);transition:transform .12s linear,box-shadow .25s}
+.card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(120%);transition:transform .8s var(--ease-out);pointer-events:none}
+.card:hover .card-media::after{transform:translateX(-120%)}
+.card-badge{animation:popIn .7s var(--ease-spring) .4s both}
+.trust-item svg{transition:transform .5s var(--ease-spring)}
+.trust-item:hover svg{transform:scale(1.2) rotate(-8deg)}
+.review{transition:transform .35s var(--ease-out),box-shadow .35s}
+.review:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(14,33,64,.14)}
+.chip{transition:transform .25s var(--ease-spring),background-color .25s,color .25s}
+.chip:hover{transform:translateY(-2px)}
+.chip:active{transform:scale(.93)}
+.chip.active{animation:chipPop .5s var(--ease-spring)}
+@keyframes chipPop{0%{transform:scale(.88)}100%{transform:scale(1)}}
+.faq-list summary::after{transition:transform .35s var(--ease-spring)}
+.faq-list details[open] summary::after{transform:rotate(135deg)}
+.story-visual img{transition:transform 1.4s var(--ease-out)}
+.story-visual:hover img{transform:scale(1.06)}
+.story-badge{animation:bob 5s ease-in-out infinite}
+
+/* buttons: shine + press + ripple */
+.btn{position:relative;overflow:hidden;transition:transform .3s var(--ease-spring),box-shadow .3s,background-color .25s,color .25s,border-color .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:translateY(0) scale(.96)}
+.btn-primary::after{content:"";position:absolute;top:0;bottom:0;width:40%;inset-inline-start:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 4.2s ease-in-out 2.5s infinite;pointer-events:none}
+@keyframes shine{0%,60%{inset-inline-start:-60%}100%{inset-inline-start:130%}}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:ripple .65s ease-out forwards;pointer-events:none}
+@keyframes ripple{to{transform:scale(3.2);opacity:0}}
+
+/* overlay, drawers, modals */
+.overlay{animation:fadeIn .4s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.drawer{transition:transform .6s var(--ease-out)}
+.modal{transition:opacity .35s ease}
+.modal .modal-card{transform:translateY(60px) scale(.9);opacity:0;transition:transform .6s var(--ease-spring),opacity .35s}
+.modal.open .modal-card{transform:none;opacity:1}
+.drawer.fresh .drawer-head{animation:fadeUp .5s var(--ease-out) .15s both}
+.drawer.fresh .drawer-body>*{animation:slideIn .6s var(--ease-out) both;animation-delay:calc(.2s + var(--k,0) * 70ms)}
+.drawer.fresh .drawer-foot{animation:fadeUp .6s var(--ease-out) .45s both}
+.modal.fresh .modal-close{animation:popIn .6s var(--ease-spring) .35s both}
+.modal.fresh .pd-gallery{animation:rvZoom .8s var(--ease-out) .15s both}
+.modal.fresh .pd-thumbs img{animation:popIn .5s var(--ease-spring) both;animation-delay:calc(.35s + var(--k,0) * 70ms)}
+.modal.fresh .pd-info>*{animation:fadeUp .6s var(--ease-out) both;animation-delay:calc(.2s + var(--k,0) * 60ms)}
+.modal.fresh #checkoutBody>*,.modal.fresh #checkoutBody form>*{animation:fadeUp .55s var(--ease-out) both;animation-delay:calc(.15s + var(--k,0) * 50ms)}
+@keyframes slideIn{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.pay-opt{transition:transform .25s var(--ease-spring),border-color .25s,background-color .25s}
+.pay-opt:hover{transform:translateY(-2px)}
+.pay-opt.active{animation:chipPop .45s var(--ease-spring)}
+.pd-colors button,.pd-thumbs img{transition:transform .25s var(--ease-spring),border-color .25s,opacity .25s}
+.pd-colors button:hover,.pd-thumbs img:hover{transform:translateY(-2px)}
+#pdMain.swap{animation:rvZoom .5s var(--ease-out)}
+.cart-item{transition:transform .25s,box-shadow .25s}
+
+/* search overlay */
+.search-overlay:not([hidden]){animation:searchIn .45s var(--ease-out) both}
+@keyframes searchIn{from{opacity:0;transform:translateY(-24px)}to{opacity:1;transform:none}}
+.search-bar{animation:fadeUp .6s var(--ease-out) .1s both}
+.sr-item{animation:popIn .45s var(--ease-spring) both;animation-delay:calc(var(--k,0) * 45ms)}
+
+/* toast + fab */
+.toast{transition:transform .55s var(--ease-spring)}
+.fly-dot{position:fixed;z-index:300;width:16px;height:16px;border-radius:50%;background:#FF6B1A;box-shadow:0 0 0 4px rgba(255,107,26,.25);pointer-events:none;left:0;top:0}
+.wa-fab{animation:popIn .8s var(--ease-spring) 2.2s both}
+.wa-fab::before{content:"";position:absolute;inset:0;border-radius:50%;background:#25D366;opacity:.5;animation:ping 2.6s ease-out 3s infinite;z-index:-1}
+.wa-fab{transition:transform .3s var(--ease-spring)}
+.wa-fab:hover{transform:scale(1.12) rotate(-6deg)}
+.wish-btn.on svg{animation:heart .6s var(--ease-spring)}
+@keyframes heart{0%{transform:scale(.5)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+
+@media (hover:none){.card.tilt{transform:none}}
+@media (max-width:640px){
+  .hero-watch{animation-duration:8s}
+  .rv.in{animation-duration:.7s}
+  @keyframes rvUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+  .js .rv:not(.in):not(.seen){opacity:1}
+  .scroll-bar,.fly-dot{display:none}
+  .hero-watch{animation:none!important}
+}
+.drawer:not(.open){box-shadow:none}
+
+/* FAQ accordion */
+.faq-list details{overflow:hidden}
+.faq-list details > p{transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1);will-change:opacity,transform}
+.faq-list details.is-closing > p{opacity:0;transform:translateY(-8px)}
+.faq-list details.is-opening > p{animation:faqIn .5s cubic-bezier(.22,1,.36,1) both}
+@keyframes faqIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.faq-list details{transition:border-color .3s,box-shadow .3s}
+.faq-list summary:active{transform:scale(.99)}
+.faq-list summary{transition:transform .2s}
+@media (prefers-reduced-motion:reduce){.faq-list details.is-opening > p{animation:none}.faq-list details > p{transition:none}}
+.card[data-id]{cursor:pointer}
+.modal-card{margin-inline:auto;min-width:0}@media (max-width:480px){.modal{padding:14px}.modal-card{max-height:calc(100dvh - 28px)}.modal-close{top:10px;inset-inline-end:10px}}
+.pd-thumbs[hidden]{display:none}
