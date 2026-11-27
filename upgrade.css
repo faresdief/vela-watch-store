@@ -102,7 +102,11 @@ html[data-theme="dark"] .drawer,
 html[data-theme="dark"] .modal-card{background:#0D1824}
 html[data-theme="dark"] body{color:var(--ink)}
 html[data-theme="dark"] .modal-card{color:#E9E3D6}
-html[data-theme="dark"] .hero-watch{border-radius:28px;box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(244,241,234,.08)}
+/* dark hero: transparent cutout blends into the page, no box */
+.hero-img-dark{display:none}
+html[data-theme="dark"] .hero-img-light{display:none}
+html[data-theme="dark"] .hero-img-dark{display:block;filter:drop-shadow(0 38px 42px rgba(0,0,0,.55))}
+html[data-theme="dark"] .hero-stage::before{content:"";position:absolute;inset:-6% -14%;pointer-events:none;background:radial-gradient(46% 42% at 50% 52%,rgba(226,98,44,.22),rgba(226,98,44,.06) 55%,transparent 75%)}
 html[data-theme="dark"] .btn-light{background:#F4F1EA}
 html[data-theme="dark"] .header-pill,
 html[data-theme="dark"] .card,
@@ -223,7 +227,6 @@ html[data-theme="dark"] .steps li.now .step-dot{background:#152638}
 html[data-theme="dark"] .track-pill,
 html[data-theme="dark"] .order-card .st{color:#4ade80}
 html[data-theme="dark"] .skip-link{color:#fff}
-html[data-theme="dark"] .hero-watch,
 html[data-theme="dark"] .card-media img{filter:brightness(.94) contrast(1.03)}
 
 @media (prefers-reduced-motion:reduce){
