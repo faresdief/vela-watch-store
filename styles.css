@@ -234,9 +234,9 @@ section{scroll-margin-top:90px}
 .empty-state{text-align:center;color:var(--muted);padding:40px 10px;font-size:14px}
 
 /* ---------- modal ---------- */
-.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;background:rgba(7,19,32,.55);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .22s}
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:20px;box-sizing:border-box;background:rgba(7,19,32,.55);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .22s}
 .modal.open{opacity:1;pointer-events:auto}
-.modal-card{background:var(--off);border-radius:22px;width:min(920px,96vw);max-height:92vh;overflow:auto;position:relative;box-shadow:0 40px 90px rgba(7,19,32,.4)}
+.modal-card{background:var(--off);border-radius:22px;width:min(920px,100%);max-height:calc(100dvh - 40px);overflow:auto;position:relative;box-shadow:0 40px 90px rgba(7,19,32,.4)}
 .modal-close{position:absolute;top:12px;inset-inline-end:12px;background:rgba(244,241,234,.9);z-index:2;font-size:15px}
 .product-detail{display:grid;grid-template-columns:1fr 1fr}
 .pd-gallery{background:#e6e0d3}
