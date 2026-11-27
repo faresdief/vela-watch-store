@@ -18,8 +18,7 @@ const SHOP = {
       rating: 4.9, reviews: 128,
       badge: "الأكثر مبيعاً",
       images: [
-        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["بني جلدي", "أسود", "برتقالي"],
       short: "كلاسيك بسوار جلدي طبيعي ومينا أوف وايت.",
@@ -35,8 +34,7 @@ const SHOP = {
       rating: 4.7, reviews: 94,
       badge: "جديد",
       images: [
-        "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["أزرق", "أسود", "فضي"],
       short: "كرونوغراف أزرق باستاينلس ستيل خفيف.",
@@ -52,8 +50,7 @@ const SHOP = {
       rating: 5.0, reviews: 61,
       badge: "إصدار محدود",
       images: [
-        "https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["ذهبي", "روز جولد"],
       short: "ذهبي دافئ بحجم ٣٤ مم ومينا لؤلؤي.",
@@ -69,8 +66,7 @@ const SHOP = {
       rating: 4.8, reviews: 143,
       badge: "الأعلى تقييماً",
       images: [
-        "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1526045431048-f857369baa09?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1548171915-e79a380a2a4b?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["فضي/برتقالي", "أسود"],
       short: "غوّاصة ١٠ بار بلمسة برتقالي.",
@@ -86,8 +82,7 @@ const SHOP = {
       rating: 4.6, reviews: 77,
       badge: "",
       images: [
-        "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["أسود مطفي", "أسود/فضي"],
       short: "أسود مطفي، بلا أرقام، ستايل هادي.",
@@ -103,8 +98,7 @@ const SHOP = {
       rating: 4.8, reviews: 52,
       badge: "",
       images: [
-        "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1594534475808-b18fc33b045e?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["برونزي", "بني"],
       short: "درجات دافئة وكرونوغراف بحركة أوتوماتيك.",
@@ -120,8 +114,7 @@ const SHOP = {
       rating: 4.7, reviews: 88,
       badge: "",
       images: [
-        "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1509048191080-d2984bad6ae5?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["فضي", "أوف وايت"],
       short: "خطوط رفيعة ومينا أوف وايت كلاسيكي.",
@@ -137,8 +130,7 @@ const SHOP = {
       rating: 4.5, reviews: 44,
       badge: "",
       images: [
-        "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["أسود", "أزرق ليلي"],
       short: "مينا أسود ومؤشرات مضيئة ليلاً.",
@@ -154,8 +146,7 @@ const SHOP = {
       rating: 4.9, reviews: 36,
       badge: "إصدار محدود",
       images: [
-        "https://images.unsplash.com/photo-1594534475808-b18fc33b045e?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1594534475808-b18fc33b045e?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["برتقالي", "أسود/برتقالي"],
       short: "سوار برتقالي وإطار أسود — القطعة اللافتة.",
@@ -171,8 +162,7 @@ const SHOP = {
       rating: 4.6, reviews: 57,
       badge: "",
       images: [
-        "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?auto=format&fit=crop&w=900&q=80"
+        "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=80"
       ],
       colors: ["روز جولد", "فضي"],
       short: "روز جولد بحجم ٣٢ مم وسوار رفيع.",
