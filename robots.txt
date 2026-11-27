@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://faresdief.github.io/vela-watch-store/sitemap.xml
