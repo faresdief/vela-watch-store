@@ -226,7 +226,7 @@
       <div class="product-detail">
         <div>
           <div class="pd-gallery"><img id="pdMain" src="${p.images[0]}" alt="${p.name}"></div>
-          <div class="pd-thumbs">
+          <div class="pd-thumbs" ${p.images.length < 2 ? "hidden" : ""}>
             ${p.images.map((src, i) => `<img src="${src}" data-thumb="${i}" class="${i === 0 ? "active" : ""}" alt="">`).join("")}
           </div>
         </div>
@@ -501,6 +501,8 @@
     if (add) { e.preventDefault(); addToCart(add.dataset.add); return; }
     if (view) { e.preventDefault(); closeSearch(); openProduct(view.dataset.view); return; }
     if (wish) { e.preventDefault(); toggleWish(wish.dataset.wish); return; }
+    const cardEl = t.closest(".card[data-id]");
+    if (cardEl && !t.closest("button, a")) { e.preventDefault(); closeSearch(); openProduct(cardEl.dataset.id); return; }
     if (chip) {
       e.preventDefault();
       state.cat = chip.dataset.cat;
