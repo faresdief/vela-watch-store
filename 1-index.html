@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELA | ڤيلا - ساعات رجالية ونسائية أصلية</title>
+<meta name="description" content="ڤيلا VELA — ساعات مختارة بعناية. دفع عند الاستلام، شحن لكل محافظات مصر، وضمان سنة. اطلب أوردرك على واتساب في دقيقة.">
+<meta name="theme-color" content="#0B1C2C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1C2C'/%3E%3Ctext x='32' y='44' font-family='Georgia' font-size='34' fill='%23F4F1EA' text-anchor='middle'%3EV%3C/text%3E%3Ccircle cx='32' cy='32' r='27' fill='none' stroke='%23E2622C' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="announce">
+  <div class="wrap announce-inner">
+    <span>شحن مجاني للأوردرات فوق ٢٥٠٠ جنيه</span>
+    <span class="dot"></span>
+    <span>الدفع عند الاستلام في كل المحافظات</span>
+    <span class="dot"></span>
+    <span>ضمان سنة على الماكينة</span>
+  </div>
+</div>
+
+<header class="site-header" id="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="VELA">
+      <span class="brand-mark">VELA</span>
+      <span class="brand-sub">ڤيلا · ساعات</span>
+    </a>
+
+    <nav class="nav" id="mainNav">
+      <a href="#shop">الساعات</a>
+      <a href="#story">عن ڤيلا</a>
+      <a href="#reviews">آراء العملاء</a>
+      <a href="#faq">أسئلة شائعة</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="بحث">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="ordersBtn" aria-label="طلباتي">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+        <span class="badge" id="ordersCount" hidden>0</span>
+      </button>
+      <button class="icon-btn" id="wishBtn" aria-label="المفضلة">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.6-7-9.5A4 4 0 0 1 12 7a4 4 0 0 1 7 3.5C19 15.4 12 20 12 20z"/></svg>
+        <span class="badge" id="wishCount" hidden>0</span>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="السلة">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h12l1.5 13h-15z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span>السلة</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">مجموعة ٢٠٢٦</p>
+        <h1>وقتك يستاهل<br><em>ساعة تليق بيه</em></h1>
+        <p class="lead">ساعات مختارة واحدة واحدة، ماكينات دقيقة، وستايل بيعيش سنين. اطلب من البيت، وادفع لما توصلك.</p>
+        <div class="hero-cta">
+          <a href="#shop" class="btn btn-primary">تسوّق المجموعة</a>
+          <a href="#story" class="btn btn-ghost">ليه ڤيلا؟</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>+١٢ ألف</strong><span>عميل في مصر</span></div>
+          <div><strong>سنتين</strong><span>ضمان الماكينة</span></div>
+          <div><strong>٤.٩/٥</strong><span>تقييم العملاء</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-frame">
+          <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80" alt="ساعة ڤيلا كلاسيك بسوار جلدي" loading="eager">
+        </div>
+        <div class="hero-tag">
+          <span class="tag-dot"></span>
+          <div><strong>سوار برتقالي</strong><small>إصدار محدود</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap trust-grid">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+        <div><strong>شحن سريع</strong><span>٢-٤ أيام عمل لكل المحافظات</span></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.2-3 7.4-7 9-4-1.6-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div><strong>ضمان سنة</strong><span>على الماكينة والحركة</span></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M2.5 10h19"/></svg>
+        <div><strong>دفع عند الاستلام</strong><span>أو تحويل إنستاباي</span></div>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg>
+        <div><strong>استبدال ١٤ يوم</strong><span>لو المقاس مش مظبوط</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collection" id="shop">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">المجموعة</p>
+          <h2>اختار ساعتك</h2>
+        </div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="grid" id="productGrid"></div>
+      <p class="empty" id="gridEmpty" hidden>مفيش ساعات في القسم ده دلوقتي.</p>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap story-inner">
+      <div class="story-visual">
+        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=80" alt="ساعة ڤيلا على كتاب" loading="lazy">
+        <div class="story-badge"><span>+٤٠</span><small>موديل في المخزن</small></div>
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">عن ڤيلا</p>
+        <h2>بنختار الساعة قبل ما نبيعها</h2>
+        <p>بدأنا ڤيلا بفكرة بسيطة: ساعة كويسة مش لازم تبقى غالية. كل موديل بنجيبه بنختبره أسبوع كامل — الحركة، وزن السوار، دقة الوقت، ولمعة الاستانلس — واللي مش بيعدّي الاختبار مش بيتعرض.</p>
+        <ul class="ticks">
+          <li>ماكينات كوارتز ويابانية وأوتوماتيك مختارة</li>
+          <li>زجاج ياقوتي أو معدني مقوّى ضد الخدش</li>
+          <li>مقاومة مياه من ٣ لـ ١٠ بار</li>
+          <li>علبة هدية وكتالوج مع كل ساعة</li>
+        </ul>
+        <a href="#shop" class="btn btn-primary">شوف المتاح دلوقتي</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head center">
+        <div>
+          <p class="eyebrow">آراء العملاء</p>
+          <h2>ناس لبستها قبلك</h2>
+        </div>
+      </div>
+      <div class="review-grid">
+        <figure class="review">
+          <div class="stars">★★★★★</div>
+          <blockquote>الساعة وصلت في يومين والعلبة نفسها شكلها فخم. الوزن والتقفيل أحسن من سعرها بكتير.</blockquote>
+          <figcaption>أحمد س. — القاهرة</figcaption>
+        </figure>
+        <figure class="review">
+          <div class="stars">★★★★★</div>
+          <blockquote>طلبت اتنين، واحد ليا وواحد هدية لأخويا. التعامل على واتساب كان سريع جداً والأوردر جه زي ما اتفقنا بالظبط.</blockquote>
+          <figcaption>منة ع. — الإسكندرية</figcaption>
+        </figure>
+        <figure class="review">
+          <div class="stars">★★★★★</div>
+          <blockquote>كنت خايف أطلب ساعة أونلاين، بس الدفع عند الاستلام خلاني أطمن. المقاس طلع مظبوط والضمان مكتوب في الفاتورة.</blockquote>
+          <figcaption>يوسف م. — المنصورة</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap faq-inner">
+      <div class="faq-head">
+        <p class="eyebrow">أسئلة شائعة</p>
+        <h2>كل اللي محتاج تعرفه</h2>
+        <p class="muted">لو سؤالك مش هنا، ابعته على واتساب وهنرد عليك في دقايق.</p>
+        <a class="btn btn-wa" href="https://wa.me/201282083162?text=سلام ڤيلا، عندي سؤال" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 10.5c0 3 2.5 5 5 5 .8 0 1.4-.6 1.4-1.2l-1.7-.9-.9.9c-1-.4-1.9-1.3-2.3-2.3l.9-.9-.9-1.7c-.6 0-1.5.5-1.5 1.1z"/></svg>
+          اسأل على واتساب
+        </a>
+      </div>
+      <div class="faq-list" id="faqList">
+        <details>
+          <summary>الشحن بياخد قد إيه؟</summary>
+          <p>القاهرة والجيزة من يوم لـ يومين، وباقي المحافظات من ٢ لـ ٤ أيام عمل. بتوصلك رسالة على الواتساب برقم الشحنة أول ما تطلع.</p>
+        </details>
+        <details>
+          <summary>أقدر أدفع عند الاستلام؟</summary>
+          <p>أيوه، في كل المحافظات. لو حابب تدفع مقدم، بنقبل تحويل إنستاباي أو فودافون كاش وهنبعتلك بيانات التحويل على الواتساب.</p>
+        </details>
+        <details>
+          <summary>إيه اللي بيحصل لو المقاس مش عاجبني؟</summary>
+          <p>عندك ١٤ يوم تستبدل أو ترجّع، بشرط إن الساعة بحالتها وعلبتها. بنظبط مقاس السوار مجاناً في أي فرع أو عن طريق الشحن.</p>
+        </details>
+        <details>
+          <summary>الساعات أصلية؟ والضمان بيغطي إيه؟</summary>
+          <p>كل الساعات أصلية وبضمان سنة على الماكينة والحركة ضد عيوب الصناعة. الضمان مش بيغطي الخدوش أو كسر الزجاج أو دخول مياه من سوء الاستخدام.</p>
+        </details>
+        <details>
+          <summary>بتوصلوا بره مصر؟</summary>
+          <p>حالياً بنشحن داخل مصر بس. لو بره مصر، كلمنا على واتساب وبنشوف أرخص طريقة شحن ليك.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="contact">
+    <div class="wrap cta-inner">
+      <div>
+        <p class="eyebrow light">جاهز؟</p>
+        <h2>اطلب أوردرك في دقيقة</h2>
+        <p>اختار ساعتك، ابعتلنا اسمك ورقمك، وإحنا نكمل معاك على واتساب لحد ما توصلك.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="#shop" class="btn btn-light">اختار ساعة</a>
+        <a href="https://wa.me/201282083162" class="btn btn-outline-light" target="_blank" rel="noopener">كلمنا: 01282083162</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">VELA</span>
+      <p>ساعات مختارة بعناية، بتوصلك لحد باب البيت.</p>
+      <div class="socials">
+        <a href="https://wa.me/201282083162" target="_blank" rel="noopener" aria-label="واتساب">واتساب</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="انستجرام">انستجرام</a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="فيسبوك">فيسبوك</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>المتجر</h4>
+      <a href="#shop">كل الساعات</a>
+      <a href="#shop" data-cat="كلاسيك">كلاسيك</a>
+      <a href="#shop" data-cat="رياضية">رياضية</a>
+      <a href="#shop" data-cat="نسائية">نسائية</a>
+    </div>
+    <div class="footer-col">
+      <h4>المساعدة</h4>
+      <a href="#faq">الشحن والاستبدال</a>
+      <a href="#faq">الضمان</a>
+      <a href="https://wa.me/201282083162" target="_blank" rel="noopener">تواصل معنا</a>
+    </div>
+    <div class="footer-col">
+      <h4>الدفع</h4>
+      <span class="pay">كاش عند الاستلام</span>
+      <span class="pay">إنستاباي</span>
+      <span class="pay">فودافون كاش</span>
+      <span class="pay">فيزا / ماستركارد</span>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© <span id="year"></span> ڤيلا VELA — كل الحقوق محفوظة.</span>
+    <span>صُنع في مصر 🇪🇬</span>
+  </div>
+</footer>
+
+<!-- ============ Cart drawer ============ -->
+<div class="overlay" id="overlay" hidden></div>
+
+<aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="السلة">
+  <div class="drawer-head">
+    <h3>سلة الشراء</h3>
+    <button class="icon-btn close" data-close="cartDrawer" aria-label="إغلاق">✕</button>
+  </div>
+  <div class="drawer-body" id="cartItems"></div>
+  <div class="drawer-foot" id="cartFoot">
+    <div class="coupon">
+      <input type="text" id="couponInput" placeholder="كود الخصم (مثال: VELA10)">
+      <button class="btn btn-dark" id="couponBtn">تطبيق</button>
+    </div>
+    <div class="sum"><span>المجموع الفرعي</span><b id="subTotal">0 ج.م</b></div>
+    <div class="sum"><span>الشحن</span><b id="shipFee">—</b></div>
+    <div class="sum" id="discountRow" hidden><span>الخصم</span><b id="discountVal">0 ج.م</b></div>
+    <div class="sum total"><span>الإجمالي</span><b id="grandTotal">0 ج.م</b></div>
+    <button class="btn btn-primary block" id="toCheckout">إتمام الأوردر</button>
+    <p class="fineprint">هتبعتلنا بيانات الأوردر على واتساب ونأكدها معاك قبل الشحن.</p>
+  </div>
+</aside>
+
+<!-- ============ Orders drawer ============ -->
+<aside class="drawer" id="ordersDrawer" aria-hidden="true" aria-label="طلباتي">
+  <div class="drawer-head">
+    <h3>طلباتي</h3>
+    <button class="icon-btn close" data-close="ordersDrawer" aria-label="إغلاق">✕</button>
+  </div>
+  <div class="drawer-body" id="ordersList"></div>
+</aside>
+
+<!-- ============ Wishlist drawer ============ -->
+<aside class="drawer" id="wishDrawer" aria-hidden="true" aria-label="المفضلة">
+  <div class="drawer-head">
+    <h3>المفضلة</h3>
+    <button class="icon-btn close" data-close="wishDrawer" aria-label="إغلاق">✕</button>
+  </div>
+  <div class="drawer-body" id="wishList"></div>
+</aside>
+
+<!-- ============ Product modal ============ -->
+<div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card product-card">
+    <button class="icon-btn close modal-close" data-close="productModal" aria-label="إغلاق">✕</button>
+    <div id="productDetail"></div>
+  </div>
+</div>
+
+<!-- ============ Checkout modal ============ -->
+<div class="modal" id="checkoutModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-card checkout-card">
+    <button class="icon-btn close modal-close" data-close="checkoutModal" aria-label="إغلاق">✕</button>
+    <div id="checkoutBody"></div>
+  </div>
+</div>
+
+<!-- ============ Search overlay ============ -->
+<div class="search-overlay" id="searchOverlay" hidden>
+  <div class="wrap">
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input type="search" id="searchInput" placeholder="دور على موديل، لون، أو قسم…" autocomplete="off">
+      <button class="icon-btn close" id="searchClose" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<a class="wa-fab" href="https://wa.me/201282083162?text=سلام ڤيلا، عايز أسأل عن ساعة" target="_blank" rel="noopener" aria-label="واتساب">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 10.5c0 3 2.5 5 5 5 .8 0 1.4-.6 1.4-1.2l-1.7-.9-.9.9c-1-.4-1.9-1.3-2.3-2.3l.9-.9-.9-1.7c-.6 0-1.5.5-1.5 1.1z"/></svg>
+</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="products.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
