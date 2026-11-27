@@ -1,5 +1,5 @@
 /* VELA service worker: network-first for the app shell, cache-first for images. */
-const V="vela-v1",SHELL=["./","index.html","styles.css","anim.css","upgrade.css","products.js","app.js","anim.js","upgrade.js","hero.jpg"];
+const V="vela-v2",SHELL=["./","index.html","styles.css","anim.css","upgrade.css","products.js","app.js","anim.js","upgrade.js","hero.jpg","hero-dark.webp"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{
