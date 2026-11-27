@@ -171,3 +171,28 @@
     setTimeout(function () { requestAnimationFrame(step); }, 1500);
   });
 })();
+
+/* FAQ smooth accordion */
+(function () {
+  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".faq-list details").forEach(function (d) {
+    var s = d.querySelector("summary"), anim = null;
+    s.addEventListener("click", function (e) {
+      if (RM || !d.animate) return;
+      e.preventDefault();
+      if (anim) anim.cancel();
+      var start = d.offsetHeight, opening = !d.open;
+      if (opening) { d.open = true; d.classList.add("is-opening"); }
+      else d.classList.add("is-closing");
+      var end = opening ? s.offsetHeight + d.querySelector("p").offsetHeight + (d.offsetHeight - s.offsetHeight - d.querySelector("p").offsetHeight) : s.offsetHeight + (d.offsetHeight - d.clientHeight);
+      if (opening) end = d.scrollHeight + (d.offsetHeight - d.clientHeight);
+      else { var cs = getComputedStyle(d); end = s.offsetHeight + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth); }
+      d.style.overflow = "hidden";
+      anim = d.animate({ height: [start + "px", end + "px"] }, { duration: opening ? 480 : 360, easing: "cubic-bezier(.22,1,.36,1)" });
+      anim.onfinish = anim.oncancel = function () {
+        d.open = opening; d.style.height = d.style.overflow = "";
+        d.classList.remove("is-opening", "is-closing"); anim = null;
+      };
+    });
+  });
+})();
