@@ -5,6 +5,7 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const money = n => n.toLocaleString("en-US") + " ج.م";
+  const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const LS = {
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -297,10 +298,12 @@
   /* ---------- checkout ---------- */
   let chosenGov = "القاهرة";
   let payMethod = "كاش عند الاستلام";
+  let coDraft = null;
 
   function openCheckout() {
     if (!state.cart.length) { toast("السلة فاضية"); return; }
-    chosenGov = "القاهرة";
+    chosenGov = (coDraft && coDraft.gov) || "القاهرة";
+    payMethod = (coDraft && coDraft.pay) || "كاش عند الاستلام";
     $("#checkoutBody").innerHTML = `
       <div class="checkout-body">
         <h2>بيانات الأوردر</h2>
@@ -309,41 +312,41 @@
           <div class="checkout-grid">
             <div class="field">
               <label for="cName">الاسم بالكامل *</label>
-              <input id="cName" name="name" autocomplete="name" placeholder="مثال: أحمد محمود">
+              <input id="cName" name="name" autocomplete="name" placeholder="مثال: أحمد محمود" value="${coDraft ? esc(coDraft.name) : ""}">
               <span class="err" id="eName"></span>
             </div>
             <div class="field">
               <label for="cPhone">رقم الموبايل *</label>
-              <input id="cPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx">
+              <input id="cPhone" name="phone" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx" value="${coDraft ? esc(coDraft.phone) : ""}">
               <span class="err" id="ePhone"></span>
             </div>
             <div class="field">
               <label for="cGov">المحافظة *</label>
               <select id="cGov" name="gov">
-                ${Object.keys(GOVS).map(g => `<option value="${g}">${g}</option>`).join("")}
+                ${Object.keys(GOVS).map(g => `<option value="${g}"${chosenGov === g ? " selected" : ""}>${g}</option>`).join("")}
               </select>
               <span class="err"></span>
             </div>
             <div class="field">
               <label for="cArea">المنطقة / الحي</label>
-              <input id="cArea" name="area" placeholder="مثال: مدينة نصر - عباس العقاد">
+              <input id="cArea" name="area" placeholder="مثال: مدينة نصر - عباس العقاد" value="${coDraft ? esc(coDraft.area) : ""}">
               <span class="err"></span>
             </div>
             <div class="field full">
               <label for="cAddr">العنوان بالتفصيل *</label>
-              <input id="cAddr" name="addr" autocomplete="street-address" placeholder="اسم الشارع، رقم العمارة، الدور، الشقة">
+              <input id="cAddr" name="addr" autocomplete="street-address" placeholder="اسم الشارع، رقم العمارة، الدور، الشقة" value="${coDraft ? esc(coDraft.addr) : ""}">
               <span class="err" id="eAddr"></span>
             </div>
             <div class="field full">
               <label>طريقة الدفع</label>
               <div class="pay-options" id="payOptions">
-                <label class="pay-opt active"><input type="radio" name="pay" value="كاش عند الاستلام" checked> كاش عند الاستلام (الأكثر طلباً)</label>
-                <label class="pay-opt"><input type="radio" name="pay" value="تحويل إنستاباي"> تحويل إنستاباي / فودافون كاش (هيبعتلك البيانات على واتساب)</label>
+                <label class="pay-opt${payMethod === "كاش عند الاستلام" ? " active" : ""}"><input type="radio" name="pay" value="كاش عند الاستلام"${payMethod === "كاش عند الاستلام" ? " checked" : ""}> كاش عند الاستلام (الأكثر طلباً)</label>
+                <label class="pay-opt${payMethod === "تحويل إنستاباي" ? " active" : ""}"><input type="radio" name="pay" value="تحويل إنستاباي"${payMethod === "تحويل إنستاباي" ? " checked" : ""}> تحويل إنستاباي / فودافون كاش (هيبعتلك البيانات على واتساب)</label>
               </div>
             </div>
             <div class="field full">
               <label for="cNote">ملاحظات (اختياري)</label>
-              <textarea id="cNote" name="note" placeholder="وقت مناسب للتوصيل، مقاس السوار، تغليف هدية…"></textarea>
+              <textarea id="cNote" name="note" placeholder="وقت مناسب للتوصيل، مقاس السوار، تغليف هدية…">${coDraft ? esc(coDraft.note) : ""}</textarea>
             </div>
           </div>
           <div class="order-recap" id="recap"></div>
@@ -392,55 +395,94 @@
       if (addr.length < 8) { $("#eAddr").textContent = "اكتب العنوان بالتفصيل"; ok = false; }
       if (!ok) return;
 
-      const no = "VELA-" + String(Date.now()).slice(-6);
-      const lines = state.cart.map((it, i) => {
-        const p = byId(it.id);
-        return `${i + 1}) ${p.name} — ${it.color} — عدد ${it.qty} — ${money(p.price * it.qty)}`;
-      });
-      const msg = [
-        "طلب جديد من موقع ڤيلا 🕐",
-        "رقم الطلب: " + no,
-        "———————————",
-        ...lines,
-        "———————————",
-        "المجموع الفرعي: " + money(subtotal()),
-        discount() ? "الخصم (" + state.coupon + "): − " + money(discount()) : null,
-        "الشحن (" + chosenGov + "): " + (shipping(chosenGov) ? money(shipping(chosenGov)) : "مجاني"),
-        "الإجمالي: " + money(grand(chosenGov)),
-        "———————————",
-        "الاسم: " + name,
-        "الموبايل: " + phone,
-        "المحافظة: " + chosenGov,
-        area ? "المنطقة: " + area : null,
-        "العنوان: " + addr,
-        "الدفع: " + payMethod,
-        note ? "ملاحظات: " + note : null
-      ].filter(Boolean).join("\n");
-
-      const order = {
-        no, ts: Date.now(), name, phone, gov: chosenGov, area, addr, note,
-        pay: payMethod, items: state.cart.map(it => ({ id: it.id, color: it.color, qty: it.qty })),
-        subtotal: subtotal(), discount: discount(), shipping: shipping(chosenGov), total: grand(chosenGov)
-      };
-      state.orders.unshift(order);
-      state.cart = [];
-      state.coupon = null;
-      save(); syncCounters(); renderCart(); renderGrid();
-
-      const url = "https://wa.me/" + SHOP.whatsapp + "?text=" + encodeURIComponent(msg);
-      window.open(url, "_blank");
-
+      coDraft = { name, phone, area, addr, note, gov: chosenGov, pay: payMethod };
       $("#checkoutBody").innerHTML = `
-        <div class="success">
-          <div class="tick">✓</div>
-          <h2>الأوردر جاهز يا ${name.split(" ")[0]}</h2>
-          <p>فتحنا لك واتساب برسالة فيها تفاصيل الأوردر — دوس <b>إرسال</b> وهنأكد معاك الشحن في أسرع وقت.</p>
-          <div class="order-no">${no}</div>
-          <p style="font-size:12.5px">لو واتساب مفتحش، اضغط هنا:</p>
-          <a class="btn btn-wa" href="${url}" target="_blank" rel="noopener" style="margin-top:10px">افتح واتساب تاني</a>
-          <div><button class="btn btn-outline" id="successClose" style="margin-top:14px">تمام، أكمل التسوق</button></div>
+        <div class="checkout-body">
+          <h2>راجع الأوردر قبل الإرسال</h2>
+          <p class="muted" style="font-size:13.5px">اتأكد من بياناتك والمنتجات وأسعارها — بعد التأكيد هيتفتح واتساب بنفس التفاصيل.</p>
+          <div class="order-recap">
+            <h4>بيانات التوصيل والتواصل</h4>
+            <div class="recap-line"><span>الاسم</span><b>${esc(name)}</b></div>
+            <div class="recap-line"><span>رقم التواصل</span><b dir="ltr">${esc(phone)}</b></div>
+            <div class="recap-line"><span>المحافظة</span><b>${esc(chosenGov)}</b></div>
+            ${area ? `<div class="recap-line"><span>المنطقة</span><b>${esc(area)}</b></div>` : ""}
+            <div class="recap-line"><span>العنوان</span><b>${esc(addr)}</b></div>
+            <div class="recap-line"><span>طريقة الدفع</span><b>${esc(payMethod)}</b></div>
+            ${note ? `<div class="recap-line"><span>ملاحظات</span><b>${esc(note)}</b></div>` : ""}
+          </div>
+          <div class="order-recap">
+            <h4>المنتجات المطلوبة</h4>
+            ${state.cart.map(it => {
+              const p = byId(it.id);
+              return `<div class="recap-line"><span>${p.name} · ${it.color} × ${it.qty}</span><b>${money(p.price * it.qty)}</b></div>`;
+            }).join("")}
+            <div class="recap-line"><span>المجموع الفرعي</span><b>${money(subtotal())}</b></div>
+            ${discount() ? `<div class="recap-line"><span>خصم (${esc(state.coupon)})</span><b>− ${money(discount())}</b></div>` : ""}
+            <div class="recap-line"><span>الشحن (${esc(chosenGov)})</span><b>${shipping(chosenGov) ? money(shipping(chosenGov)) : "مجاني"}</b></div>
+            <div class="recap-line t"><span>الإجمالي</span><b>${money(grand(chosenGov))}</b></div>
+          </div>
+          <div class="checkout-actions">
+            <button type="button" class="btn btn-wa" id="cfConfirm">
+              <svg viewBox="0 0 24 24"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9 10.5c0 3 2.5 5 5 5 .8 0 1.4-.6 1.4-1.2l-1.7-.9-.9.9c-1-.4-1.9-1.3-2.3-2.3l.9-.9-.9-1.7c-.6 0-1.5.5-1.5 1.1z"/></svg>
+              تأكيد الطلب وإرساله على واتساب
+            </button>
+          </div>
+          <div class="checkout-actions" style="margin-top:10px">
+            <button type="button" class="btn btn-outline block" id="cfBack">رجوع لتعديل البيانات</button>
+          </div>
         </div>`;
-      $("#successClose").onclick = closeAll;
+      $("#cfBack").onclick = () => openCheckout();
+      $("#cfConfirm").onclick = () => {
+        const no = "VELA-" + String(Date.now()).slice(-6);
+        const lines = state.cart.map((it, i) => {
+          const p = byId(it.id);
+          return `${i + 1}) ${p.name} — ${it.color} — عدد ${it.qty} — ${money(p.price * it.qty)}`;
+        });
+        const msg = [
+          "طلب جديد من موقع ڤيلا 🕐",
+          "رقم الطلب: " + no,
+          "———————————",
+          ...lines,
+          "———————————",
+          "المجموع الفرعي: " + money(subtotal()),
+          discount() ? "الخصم (" + state.coupon + "): − " + money(discount()) : null,
+          "الشحن (" + chosenGov + "): " + (shipping(chosenGov) ? money(shipping(chosenGov)) : "مجاني"),
+          "الإجمالي: " + money(grand(chosenGov)),
+          "———————————",
+          "الاسم: " + name,
+          "الموبايل: " + phone,
+          "المحافظة: " + chosenGov,
+          area ? "المنطقة: " + area : null,
+          "العنوان: " + addr,
+          "الدفع: " + payMethod,
+          note ? "ملاحظات: " + note : null
+        ].filter(Boolean).join("\n");
+
+        const order = {
+          no, ts: Date.now(), name, phone, gov: chosenGov, area, addr, note,
+          pay: payMethod, items: state.cart.map(it => ({ id: it.id, color: it.color, qty: it.qty })),
+          subtotal: subtotal(), discount: discount(), shipping: shipping(chosenGov), total: grand(chosenGov)
+        };
+        state.orders.unshift(order);
+        state.cart = [];
+        state.coupon = null;
+        save(); syncCounters(); renderCart(); renderGrid(); coDraft = null;
+
+        const url = "https://wa.me/" + SHOP.whatsapp + "?text=" + encodeURIComponent(msg);
+        window.open(url, "_blank");
+
+        $("#checkoutBody").innerHTML = `
+          <div class="success">
+            <div class="tick">✓</div>
+            <h2>الأوردر جاهز يا ${name.split(" ")[0]}</h2>
+            <p>فتحنا لك واتساب برسالة فيها تفاصيل الأوردر — دوس <b>إرسال</b> وهنأكد معاك الشحن في أسرع وقت.</p>
+            <div class="order-no">${no}</div>
+            <p style="font-size:12.5px">لو واتساب مفتحش، اضغط هنا:</p>
+            <a class="btn btn-wa" href="${url}" target="_blank" rel="noopener" style="margin-top:10px">افتح واتساب تاني</a>
+            <div><button class="btn btn-outline" id="successClose" style="margin-top:14px">تمام، أكمل التسوق</button></div>
+          </div>`;
+        $("#successClose").onclick = closeAll;
+      };
     };
 
     openModal("checkoutModal");
